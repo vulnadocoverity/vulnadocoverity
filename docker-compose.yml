@@ -28,3 +28,5 @@ services:
 
   internal_site:
     build: internal_site
+- name: Maven Dependency Tree Dependency Submission
+  uses: advanced-security/maven-dependency-submission-action@v3.0.1
