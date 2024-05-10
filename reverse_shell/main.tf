@@ -88,18 +88,4 @@ resource "aws_key_pair" "attacker" {
   public_key = "${var.public_key}"
 }
 
-resource "aws_instance" "receiver" {
-  ami           = "${data.aws_ami.amznlinux.id}"
-  instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.subnet.id}"
-  key_name = "${aws_key_pair.attacker.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.sg.id}"]
-  user_data = <<EOF
-#!/bin/bash
-yum update
-yum install -y nmap
-EOF
-  tags = {
-    Name = "VulnadoReverseShellReceiver"
-  }
-}
+
